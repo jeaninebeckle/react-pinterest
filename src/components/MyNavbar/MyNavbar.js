@@ -1,9 +1,14 @@
 import React from 'react';
 import firebase from 'firebase/app';
+import PropTypes from 'prop-types';
 import Auth from '../Auth/Auth';
 import 'firebase/auth';
 
 class MyNavbar extends React.Component {
+  static propTypes = {
+    authed: PropTypes.bool.isRequired,
+  }
+
   loginClickEvent = (e) => {
     e.preventDefault();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
