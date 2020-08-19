@@ -5,11 +5,13 @@ import connection from '../helpers/data/connection';
 import BoardContainer from '../components/BoardContainer/BoardContainer';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
 import './App.scss';
+import SingleBoard from '../components/SingleBoard.js/SingleBoard';
 
 connection();
 class App extends React.Component {
   state = {
     authed: false,
+    singleBoardId: '',
   }
 
   componentDidMount() {
@@ -26,14 +28,21 @@ class App extends React.Component {
     this.removeListener();
   }
 
+  setSingleBoard = (singleBoardId) => {
+    this.setState({ singleBoardId });
+  }
+
   render() {
-    const { authed } = this.state;
+    const { authed, singleBoardId } = this.state;
 
     const loadComponent = () => {
-      if (authed) {
-        return <BoardContainer />;
+      if (authed && singleBoardId.length === 0) {
+        return <BoardContainer setSingleBoard={this.setSingleBoard}/>;
       }
-      return false;
+      if (authed && singleBoardId.length > 0) {
+        return <SingleBoard boardId={singleBoardId} setSingleBoard={this.setSingleBoard}/>;
+      }
+      return '';
     };
 
     return (
