@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Board from '../Board/Board';
 import authData from '../../helpers/data/authData';
 import boardsData from '../../helpers/data/boardsData';
+import smash from '../../helpers/data/smash';
 
 class BoardContainer extends React.Component {
   static propTypes = {
@@ -24,7 +25,7 @@ class BoardContainer extends React.Component {
   }
 
   deleteBoard = (boardId) => {
-    boardsData.deleteBoard(boardId)
+    smash.totallyRemovePins(boardId)
       .then(() => {
         this.getBoards();
       })
