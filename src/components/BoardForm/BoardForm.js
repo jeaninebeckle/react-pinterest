@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import authData from '../../helpers/data/authData';
+
 import './BoardForm.scss';
 
 class BoardForm extends React.Component {
+  static propTypes = {
+    createBoard: PropTypes.func.isRequired,
+  }
+
   state = {
     category: '',
   }
@@ -15,12 +21,14 @@ class BoardForm extends React.Component {
   saveBoardEvent = (e) => {
     e.preventDefault();
     const { category } = this.state;
+    const { createBoard } = this.props;
 
     const newBoard = {
       category,
       uid: authData.getUid(),
     };
-    console.warn(newBoard);
+
+    createBoard(newBoard);
   }
 
   render() {
