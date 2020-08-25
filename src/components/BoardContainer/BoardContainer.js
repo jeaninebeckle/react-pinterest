@@ -14,6 +14,7 @@ class BoardContainer extends React.Component {
   state = {
     boards: [],
     formOpen: false,
+    editBoard: {},
   }
 
   getBoards = () => {
@@ -43,10 +44,14 @@ class BoardContainer extends React.Component {
       .catch((err) => console.error('create board broke', err));
   }
 
+  editABoard = (boardToEdit) => {
+    this.setState({ formOpen: true, editBoard: boardToEdit });
+  }
+
   render() {
     const { boards, formOpen } = this.state;
     const { setSingleBoard } = this.props;
-    const boardCard = boards.map((board) => <Board key={board.id} board={board} setSingleBoard={setSingleBoard} deleteBoard={this.deleteBoard}/>);
+    const boardCard = boards.map((board) => <Board key={board.id} board={board} setSingleBoard={setSingleBoard} deleteBoard={this.deleteBoard} editABoard={this.editABoard}/>);
     return (
       <div>
       <button className="btn btn-outline-warning m-3" onClick = {() => { this.setState({ formOpen: !formOpen }); }}>Show Form</button>
