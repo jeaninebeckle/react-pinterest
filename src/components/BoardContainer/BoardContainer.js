@@ -40,7 +40,7 @@ class BoardContainer extends React.Component {
     const boardCard = boards.map((board) => <Board key={board.id} board={board} setSingleBoard={setSingleBoard} deleteBoard={this.deleteBoard}/>);
     return (
       <div>
-      <button className="btn btn-outline-warning" onClick = {() => { this.setState({ formOpen: !formOpen }); }}>Show Form</button>
+      <button className="btn btn-outline-warning m-3" onClick = {() => { this.setState({ formOpen: !formOpen }); }}>Show Form</button>
         { formOpen ? <BoardForm /> : '' }
         <div className="card-columns">
           {boardCard}
