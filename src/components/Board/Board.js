@@ -24,8 +24,8 @@ class Board extends React.Component {
 
   editBoardEvent = (e) => {
     e.preventDefault();
-    const { editABoard } = this.props;
-    editABoard();
+    const { editABoard, board } = this.props;
+    editABoard(board);
   }
 
   render() {
